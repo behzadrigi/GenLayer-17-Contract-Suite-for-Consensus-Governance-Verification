@@ -1,0 +1,2 @@
+# GenLayer-Penumbra-Scale-Suite-17-Contracts-for-Multi-Pattern-Consensus-Governance-and-Verification
+A 17-contract GenLayer suite: commit-reveal voting, semantic access gating, proof checking, heart-beat liveness with reputation, weighted governance, internal-points prediction market, and challengeable assertions. Identity comes from gl.message.sender_address, data is read on-chain, and no native value transfer is used.
