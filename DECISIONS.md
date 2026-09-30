@@ -1,16 +1,16 @@
 # Design Decisions
 
-## Why 8 genuinely different primitives instead of one repeated shape
+## Why 8 genuinely different domains instead of one repeated shape
 
 Every earlier suite on this account (registry → verify → classify →
-reputation) scored acceptance but few points. The reference full-score
-submission for this campaign (Penumbra, 20 contracts) demonstrated breadth:
-distinct primitives, not one shape re-skinned. This suite deliberately covers
-territory none of the earlier suites touched: pure cryptographic
-commit-reveal with no LLM, a three-way ambiguity judgment with a dissensus
-metric, semantic policy evaluation, structured proof checking, epoch-based
-liveness, reputation-weighted governance, a guarded prediction market, and
-multi-stage adversarial challenge.
+reputation) scored acceptance but few points, which suggested breadth of
+genuinely distinct primitives matters more than repeating one shape with
+different words. This collection deliberately covers territory none of the
+earlier suites touched: pure cryptographic commit-reveal with no LLM, a
+three-way fact-verdict judgment with a dissensus metric, policy-based access
+evaluation, structured proof checking, epoch-based liveness,
+reputation-weighted governance, a guarded prediction market, and multi-stage
+adversarial challenge.
 
 ## Why CommitRevealVote uses no LLM at all
 
@@ -22,7 +22,7 @@ call in a validator function." The correctness of a reveal is checked by
 exact hash comparison, which every node computes identically; no
 non-determinism is needed or introduced.
 
-## Why AmbiguityOracle has a first-class AMBIGUOUS outcome
+## Why FactVerdictOracle has a first-class AMBIGUOUS outcome
 
 A strict TRUE/FALSE forced choice pushes genuinely unclear cases toward an
 arbitrary answer, which independent validators are less likely to agree on
