@@ -1,6 +1,6 @@
 # Contracts
 
-## Cluster B — Commit-Reveal Voting
+## Domain 1 — Commit-Reveal Voting
 
 ### 1. CommitRevealVote
 
@@ -43,9 +43,9 @@ revealed, and records it permanently.
 
 ---
 
-## Cluster A — Ambiguity-Aware Judgment & Dissensus
+## Domain 2 — Fact Verdicts & Disagreement
 
-### 3. AmbiguityOracle
+### 3. FactVerdictOracle
 
 **Pattern:** non-deterministic, strict equality on a three-way label
 (`TRUE` / `FALSE` / `AMBIGUOUS`).
@@ -65,13 +65,13 @@ can't tell" as a first-class answer rather than forcing a binary call.
 ### 4. DissensusScorer
 
 **Pattern:** fully deterministic — aggregates multiple already-authenticated
-`AmbiguityOracle` judgments.
+`FactVerdictOracle` judgments.
 
 **Purpose:** assembles a panel of judgments on the *same* statement (from
 different sources) and computes how much they disagreed.
 
 **Safety properties**
-- Every judgment in a panel is read from `AmbiguityOracle`'s own state and
+- Every judgment in a panel is read from `FactVerdictOracle`'s own state and
   must share the exact same `statement` text — a panel can't silently mix
   judgments of different claims.
 - Every question in the panel must already be `JUDGED`; scoring a panel that
@@ -85,9 +85,9 @@ different sources) and computes how much they disagreed.
 
 ---
 
-## Cluster C — Semantic Access Control
+## Domain 3 — Policy-Based Access Evaluation
 
-### 5. SemanticAccessGate
+### 5. PolicyEvidenceGate
 
 **Pattern:** non-deterministic, comparative, two-field.
 
@@ -108,20 +108,20 @@ they meet the resource's stated policy.
 
 ### 6. AccessAuditLog
 
-**Pattern:** fully deterministic — reads `SemanticAccessGate`'s own decisions.
+**Pattern:** fully deterministic — reads `PolicyEvidenceGate`'s own decisions.
 
 **Purpose:** a permanent, queryable audit trail of every access decision
 (granted or denied).
 
 **Safety properties**
-- `decision` and `requester` are read from `SemanticAccessGate`'s state,
+- `decision` and `requester` are read from `PolicyEvidenceGate`'s state,
   never supplied by the caller of `record_decision`.
 - A still-`PENDING` request cannot be logged; a request can only be logged
   once.
 
 ---
 
-## Cluster D — Structured Proof Verification
+## Domain 4 — Structured Proof Checking
 
 ### 7. ProofRegistry
 
@@ -151,7 +151,7 @@ and completely proves the registered statement.
 
 ---
 
-## Cluster E — Epoch-Based Liveness Monitoring
+## Domain 5 — Epoch-Based Liveness Monitoring
 
 ### 9. ServiceHeartbeatMonitor
 
@@ -190,7 +190,7 @@ state and converts an uptime ratio into a reputation change.
 
 ---
 
-## Cluster F — Reputation-Weighted Governance
+## Domain 6 — Reputation-Weighted Governance
 
 ### 11. ProposalRegistry
 
@@ -234,7 +234,7 @@ adds a quorum check.
 
 ---
 
-## Cluster G — Guarded-Settlement Prediction Market
+## Domain 7 — Points-Based Prediction Market
 
 ### 14. PredictionMarket
 
@@ -262,7 +262,7 @@ project on this account.
 ### 15. MarketOracleSettlement
 
 **Pattern:** non-deterministic, comparative, two-field, web-grounded —
-structurally the same rigor as `SemanticAccessGate`, applied to real-world
+structurally the same rigor as `PolicyEvidenceGate`, applied to real-world
 market resolution instead of an access decision.
 
 **Safety properties**
@@ -275,7 +275,7 @@ market resolution instead of an access decision.
 
 ---
 
-## Cluster H — Multi-Stage Adversarial Challenge
+## Domain 8 — Multi-Stage Adversarial Challenge
 
 ### 16. ChallengeableAssertion
 
